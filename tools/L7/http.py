@@ -5,7 +5,7 @@ import tools.randomData as randomData
 from colorama import Fore
 import cfscrape
 
-scraper = cfscrape.create_scraper(delay=7)  # returns a CloudflareScraper instance
+scraper = cfscrape.create_scraper()  # returns a CloudflareScraper instance
 
 # Load user agents
 user_agents = []
