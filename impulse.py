@@ -3,6 +3,8 @@
 import os
 import sys
 import argparse
+global domainname
+global attack
 
 # Go to current dir
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -37,6 +39,12 @@ parser.add_argument(
 parser.add_argument(
     "--threads", type=int, default=3, metavar="<threads>", help="threads count (1-200)"
 )
+parser.add_argument(
+    "--domain", type=str, metavar="<domain>", help="domain name"
+)
+parser.add_argument(
+    "--attack", type=str, default='get', metavar="<Attack method>", help="post , get"
+)
 
 # Get args
 args = parser.parse_args()
@@ -44,8 +52,8 @@ threads = args.threads
 time = args.time
 method = str(args.method).upper()
 target = args.target
-
-
+domainname = args.domain
+attack = args.attack
 if __name__ == "__main__":
     # Print help
     if not method or not target or not time:
@@ -54,6 +62,6 @@ if __name__ == "__main__":
 
     # Run ddos attack
     with AttackMethod(
-        duration=time, name=method, threads=threads, target=target
+        duration=time, name=method, threads=threads, target=target , domainname=domainname , attack=attack
     ) as Flood:
         Flood.Start()

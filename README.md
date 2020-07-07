@@ -28,20 +28,18 @@
 # :gift: Installation:
 
 * Linux:
-  * `sudo pip install cfscrape`
   * `sudo apt update`
   * `sudo apt install python3 python3-pip git -y`
-  * `git clone https://github.com/caipenpen/impulse-new`
-  * `cd impulse-new/`
-  * `pip3 install -r requirements.txt`
-  * `python3 impulse.py --help`
+  * `git clone https://github.com/caipenpen/impulsever2`
+  * `cd impulsever2/`
+  * `sudo pip3 install -r requirements.txt`
+  * `python impulse.py --time 120000 --threads 200 --target https://example.net --method HTTP --attack post --domain example.net`
 
 * Termux:
-  * `sudo pip install cfscrape`
   * `pkg update`
   * `pkg install python3 python3-pip git -y`
-  * `git clone https://github.com/caipenpen/impulse-new`
-  * `cd impulse-new/`
+  * `git clone https://github.com/caipenpen/impulsever2`
+  * `cd impulsever2/`
   * `pip3 install -r requirements.txt`
   * `python3 impulse.py --help`
 
